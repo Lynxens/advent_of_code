@@ -1,3 +1,5 @@
+from typing import Callable
+
 import numpy as np
 
 
@@ -37,7 +39,19 @@ def int_array(s: str) -> np.ndarray:
     )
 
 
-def split_once(s: str, sep: str) -> tuple[str, str]:
+def split_once[T=str](s: str, sep: str, _map: Callable[[str], T] = None) -> tuple[T, T]:
     parts = s.split(sep, 1)
 
-    return parts[0], parts[1] if len(parts) > 1 else ''
+    if _map:
+        parts = [*map(_map, parts)]
+
+    return parts[0], parts[1]
+
+
+def split_twice[T=str](s: str, sep: str, _map: Callable[[str], T] = None) -> tuple[T, T, T]:
+    parts = s.split(sep, 2)
+
+    if _map:
+        parts = [*map(_map, parts)]
+
+    return parts[0], parts[1], parts[2]
