@@ -41,3 +41,7 @@ def moore_neighbourhood(m: np.ndarray, i: int, j: int) -> MooreNeighbourhood:
 
 def in_2d_grid(m: np.ndarray, y: int, x: int) -> bool:
     return 0 <= y < m.shape[0] and 0 <= x < m.shape[1]
+
+
+def t_add(a: tuple[int, int], b: tuple[int, int]) -> tuple[int, int]:
+    return a[0] + b[0], a[1] + b[1]
